@@ -7,7 +7,9 @@ Clone it in your favorite folder.
 
 Start with `npm install`
 
-Setup your URL
+## Create your config file
+
+Duplicate the `config-example.json` file to a `config.json` file. Then customize it.
 
 ## How to launch tests
 
@@ -17,10 +19,10 @@ Every time you will launch `npm test`, you will find your diffs in screenshots-d
 
 ## Roadmap
 
-* [ ] Separate config file.
 * [ ] Task to create baseline folder without testing.
 * [ ] Cache HTML to avoid redownloading it at every test.
 * [ ] Unf__k the mess with browser & page at every test.
+* [ ] Generate HTML results with a compare image.
 
 ## Thanks
 

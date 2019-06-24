@@ -1,37 +1,44 @@
-/* ----------------------------------------------------------
-  Your config goes here
----------------------------------------------------------- */
-
-const _page_url = 'http://soon.test/';
-const _pages = {
-    'index': '/',
-    '404': '/404',
-    'contact': '/contact',
-};
-const _breakpoints = {
-    'wide': {
-        width: 1280,
-        height: 768
-    },
-    'tablet': {
-        width: 768,
-        height: 1024
-    },
-    'mobile': {
-        width: 375,
-        height: 667
-    }
-}
-
-/* ----------------------------------------------------------
-  Here be dragons
----------------------------------------------------------- */
-
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const expect = require('chai').expect;
 const PNG = require('pngjs').PNG;
 const pixelmatch = require('pixelmatch');
+const configFile = `${process.cwd()}/conafig.json`;
+
+/* ----------------------------------------------------------
+  Your config goes here
+---------------------------------------------------------- */
+
+var _page_url = 'http://www.google.com/';
+var _pages = {
+    'index': ''
+};
+var _breakpoints = {
+    'wide': {
+        width: 1280,
+        height: 768
+    }
+}
+
+if (!fs.existsSync(configFile)) {
+    console.log('\x1b[31m%s\x1b[0m', '/!\\ NO config.json FILE FOUND. /!\\');
+    return;
+}
+
+const _config = require(configFile);
+if (_config.page_url) {
+    _page_url = _config.page_url;
+}
+if (_config.pages) {
+    _pages = _config.pages;
+}
+if (_config.breakpoints) {
+    _breakpoints = _config.breakpoints;
+}
+
+/* ----------------------------------------------------------
+  Here be dragons
+---------------------------------------------------------- */
 
 const testDir = `${process.cwd()}/test/screenshots-current`;
 const diffDir = `${process.cwd()}/test/screenshots-diff`;

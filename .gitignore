@@ -1,1 +1,4 @@
+/config.json
+/test/screenshots-baseline
 /test/screenshots-current
+/test/screenshots-diff
